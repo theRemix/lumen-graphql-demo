@@ -22,6 +22,10 @@ class CategoryType extends GraphQLType
             'name' => [
                 'type' => Type::string(),
                 'description' => 'The name of the category'
+            ],
+            'first' => [
+                'type' => Type::int(),
+                'description' => 'Pagination limit'
             ]
         ];
     }

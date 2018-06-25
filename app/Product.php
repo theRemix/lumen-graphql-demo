@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Sofa\Eloquence\Eloquence;
 use Sofa\Eloquence\Mappable;
 
-class Category extends Model
+class Product extends Model
 {
 
     use Eloquence, Mappable;
 
-    public function product()
+    public function category()
     {
-        return $this->belongsTo(Product::class, 'category', 'category');
+        return $this->belongsTo(Category::class, 'category', 'category');
     }
 
     /**
@@ -22,12 +22,12 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name',
+        'id', 'title', 'actor', 'price', 'special', 'common_prod_id'
     ];
 
     protected $maps = [
-      'id' => 'category',
-      'name' => 'categoryname',
+      'id' => 'prod_id',
+      'category_id' => 'category'
     ];
 
     /**
