@@ -125,7 +125,8 @@ return [
         'default' => [
             'query' => [
               'categories' => 'App\GraphQL\Query\CategoryQuery',
-              'products' => 'App\GraphQL\Query\ProductQuery'
+              'products' => 'App\GraphQL\Query\ProductQuery',
+              'customers' => 'App\GraphQL\Query\CustomerQuery'
             ],
             'mutation' => [
 
@@ -183,7 +184,8 @@ return [
      */
     'types' => [
       'Category' => 'App\GraphQL\Type\CategoryType',
-      'Product' => 'App\GraphQL\Type\ProductType'
+      'Product' => 'App\GraphQL\Type\ProductType',
+      'Customer' => 'App\GraphQL\Type\CustomerType'
     ],
 
     /*
