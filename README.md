@@ -90,16 +90,30 @@ $app->configure('graphql');
 $app->register(Folklore\GraphQL\LumenServiceProvider::class)
 ```
 
-# Define Schemas
+# Define Schemas, Types, and Queries
 
 edit `config/graphql.php` to add schemas using the GraphQL facade, see `config/graphql.php`
 
+## Resources
 
+Read more on how to add these definitions and resolvers.
+
+[Introduction to GraphQL](https://graphql.org/learn/)
+
+[Laravel GraphQL](https://github.com/Folkloreatelier/laravel-graphql)
+
+[Laravel GraphQL Advanced Usage](https://github.com/Folkloreatelier/laravel-graphql/blob/develop/docs/advanced.md)
+
+Build out the rest of the app.
+
+[Lumen](https://lumen.laravel.com/)
 
 
 ## Run the project
 
 ### Using php built in server
+
+[_requires a valid db connection_](#Run a database with sample data)
 
 ```sh
 php -S localhost:8000 -t public
