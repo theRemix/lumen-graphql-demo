@@ -5,16 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Sofa\Eloquence\Eloquence;
 use Sofa\Eloquence\Mappable;
-use App\Order;
+use App\Customer;
 
-class Customer extends Model
+class Order extends Model
 {
 
     use Eloquence, Mappable;
 
-    public function orders()
+    public function customer()
     {
-        return $this->hasMany(Order::class, 'customerid', 'customerid');
+        return $this->belongsTo(Customer::class, 'customerid', 'customerid');
     }
 
     /**
@@ -23,14 +23,11 @@ class Customer extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'firstname', 'lastname', 'address1', 'address2', 'city',
-        'state', 'zip', 'country', 'region', 'email', 'phone',
-        'creditcardtype', 'creditcard', 'creditcardexpiration',
-        'username', 'password', 'age', 'income', 'gender'
+        'id', 'orderdate', 'customerid', 'netamount', 'tax', 'totalamount'
     ];
 
     protected $maps = [
-      'id' => 'customerid'
+      'id' => 'orderid'
     ];
 
     /**

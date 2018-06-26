@@ -5,6 +5,7 @@ namespace App\GraphQL\Type;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
+use App\Order;
 
 class CustomerType extends GraphQLType
 {
@@ -19,6 +20,10 @@ class CustomerType extends GraphQLType
             'id' => [
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of the customer'
+            ],
+            'orders' => [
+                'type' => Type::listOf(GraphQL::type('Order')),
+                'description' => 'The customer\'s Order'
             ],
             'firstname' => [
               'type' => Type::string(),
@@ -97,6 +102,11 @@ class CustomerType extends GraphQLType
               'description' => 'The customer\'s gender'
             ]
         ];
+    }
+
+    public function resolveOrdersField($root, $args)
+    {
+      return Order::where('customerid', $root->customerid)->get();
     }
 
 }
