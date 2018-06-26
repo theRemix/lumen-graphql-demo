@@ -5,6 +5,7 @@ namespace App\GraphQL\Type;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Type as GraphQLType;
+use App\Category;
 
 class ProductType extends GraphQLType
 {
@@ -21,11 +22,7 @@ class ProductType extends GraphQLType
                 'description' => 'The id of the product'
             ],
             'category' => [
-              'args' => [
-                'id' => ['name' => 'id', 'type' => Type::int()],
-                'name' => ['name' => 'name', 'type' => Type::string()]
-              ],
-              'type' => Type::nonNull(GraphQL::type('Category')),
+              'type' => GraphQL::type('Category'),
               'description' => 'The category/genre of the movie'
             ],
             'title' => [
@@ -53,13 +50,7 @@ class ProductType extends GraphQLType
 
     public function resolveCategoryField($root, $args)
     {
-        if (isset($args['id'])) {
-            return $root->categories->where('id', $args['id'])->get();
-        } else if(isset($args['name'])) {
-            return $root->categories->where('name', $args['name'])->get();
-        } else {
-            return $root->categories;
-        }
+      return Category::where('id', $root->category_id)->first();
     }
 
 }

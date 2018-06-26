@@ -33,7 +33,6 @@ class ProductQuery extends Query
 
     public function resolve($root, $args, $context, $info)
     {
-        DB::enableQueryLog();
         $fields = $info->getFieldSelection($depth = 3);
 
         $products = Product::query();
@@ -58,7 +57,6 @@ class ProductQuery extends Query
             $query = $products->get();
         }
 
-        dd(DB::getQueryLog());
         return $query;
     }
 }
