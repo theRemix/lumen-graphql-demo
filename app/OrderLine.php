@@ -5,22 +5,24 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Sofa\Eloquence\Eloquence;
 use Sofa\Eloquence\Mappable;
-use App\Customer;
-use App\OrderLine;
+use App\Order;
+use App\Product;
 
-class Order extends Model
+class OrderLine extends Model
 {
 
     use Eloquence, Mappable;
 
-    public function customer()
+    protected $table = 'orderlines';
+
+    public function order()
     {
-        return $this->belongsTo(Customer::class, 'customerid', 'customerid');
+        return $this->belongsTo(Order::class, 'orderid', 'orderid');
     }
 
-    public function order_line_items()
+    public function product()
     {
-        return $this->hasMany(OrderLine::class, 'orderid', 'orderid');
+        return $this->belongsTo(Product::class, 'prod_id', 'prod_id');
     }
 
     /**
@@ -29,11 +31,11 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'orderid', 'orderdate', 'customerid', 'netamount', 'tax', 'totalamount'
+        'id', 'orderid', 'prod_id', 'quantity', 'orderdate'
     ];
 
     protected $maps = [
-      'id' => 'orderid'
+      'id' => 'orderlineid'
     ];
 
     /**
@@ -42,7 +44,6 @@ class Order extends Model
      * @var array
      */
     protected $hidden = [
-      'creditcard',
-      'password'
+
     ];
 }

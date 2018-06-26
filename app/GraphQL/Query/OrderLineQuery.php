@@ -5,23 +5,25 @@ namespace App\GraphQL\Query;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Folklore\GraphQL\Support\Query;
-use App\Order;
+use App\OrderLine;
 
-class OrderQuery extends Query
+class OrderLineQuery extends Query
 {
     protected $attributes = [
-        'name' => 'orders'
+        'name' => 'order_line_items'
     ];
 
     public function type()
     {
-        return Type::listOf(GraphQL::type('Order'));
+        return Type::listOf(GraphQL::type('OrderLine'));
     }
 
     public function args()
     {
         return [
             'id' => ['name' => 'id', 'type' => Type::int()],
+            'order_id' => ['name' => 'order_id', 'type' => Type::int()],
+            'product_id' => ['name' => 'product_id', 'type' => Type::int()],
             'first' => ['name' => 'first', 'type' => Type::int()]
         ];
     }
@@ -30,13 +32,13 @@ class OrderQuery extends Query
     {
         $fields = $info->getFieldSelection($depth = 3);
 
-        $query = Order::query();
+        $query = OrderLine::query();
 
         foreach ($fields as $field => $keys) {
-            if ($field === 'customer') {
-                $query = $query->with('customer');
-            } else if ($field === 'order_line_items') {
-                $query = $query->with('order_line_items');
+            if ($field === 'order_id') {
+                $query = $query->with('order');
+            } else if ($field === 'product_id') {
+                $query = $query->with('product');
             }
         }
 

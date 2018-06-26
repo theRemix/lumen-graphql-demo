@@ -127,7 +127,8 @@ return [
               'categories' => 'App\GraphQL\Query\CategoryQuery',
               'products' => 'App\GraphQL\Query\ProductQuery',
               'customers' => 'App\GraphQL\Query\CustomerQuery',
-              'orders' => 'App\GraphQL\Query\OrderQuery'
+              'orders' => 'App\GraphQL\Query\OrderQuery',
+              'order_line_items' => 'App\GraphQL\Query\OrderLineQuery'
             ],
             'mutation' => [
 
@@ -187,7 +188,8 @@ return [
       'Category' => 'App\GraphQL\Type\CategoryType',
       'Product' => 'App\GraphQL\Type\ProductType',
       'Customer' => 'App\GraphQL\Type\CustomerType',
-      'Order' => 'App\GraphQL\Type\OrderType'
+      'Order' => 'App\GraphQL\Type\OrderType',
+      'OrderLine' => 'App\GraphQL\Type\OrderLineType'
     ],
 
     /*
